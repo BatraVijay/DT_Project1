@@ -13,11 +13,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+
+
 @Configuration
-
 @ComponentScan("com.backend")
-
-
+@EnableTransactionManagement
 public class DBConfig {
 
 @Bean(name="dataSource")
@@ -31,16 +33,19 @@ dataSource.setPassword("");
 return dataSource;
 
 }
+
+@Bean(name="sessionFactory")
 public SessionFactory getSessionFactory()
 {
 	Properties p=new Properties();
-	p.setProperty("hibernate.dialect","org.hibernate.dialect.H2.Dialect");
+	p.setProperty("hibernate.dialect","org.hibernate.dialect.H2Dialect");
 	p.setProperty("hibernate.hbm2ddl.auto","update");
 	p.setProperty("hibernate.show_sql","true");
 	
 	LocalSessionFactoryBuilder factory=new LocalSessionFactoryBuilder(getDataSource());
 	factory.addProperties(p);
-	factory.addAnnotatedClass(Category.class);
+	factory.addAnnotatedClass(com.backend.models.Category.class);
+	factory.addAnnotatedClass(com.backend.models.Supplier.class);
 	return factory.buildSessionFactory();
 	
 }

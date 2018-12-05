@@ -1,7 +1,9 @@
 package com.backend.daosimpl;
 
 import java.util.List;
-import java.util.function.Supplier;
+
+
+
 
 import javax.transaction.Transactional;
 
@@ -11,11 +13,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.backend.daos.SupplierDao;
+import com.backend.models.Supplier;
 
 
-@Repository("supplierDao")
+
+@Repository("supplierDaos")
 @Transactional
-public class SupplierDaoImpl {
+public class SupplierDaoImpl implements SupplierDao {
 
 	
 	 @Autowired

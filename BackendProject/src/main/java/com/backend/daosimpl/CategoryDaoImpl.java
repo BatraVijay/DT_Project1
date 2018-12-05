@@ -28,15 +28,14 @@ public class CategoryDaoImpl implements CategoryDaos{
 			session.save(category);
 			return true;
 		}
-		catch(Exception e)
-		{
+		catch(Exception e){
 			e.printStackTrace();
 			return false;
 		}
 		
 	}
-	@Override
 	
+	@Override
 	public boolean deleteCategory(Category category) {
 		try
 		{
@@ -44,8 +43,7 @@ public class CategoryDaoImpl implements CategoryDaos{
 			session.delete(category);
 			return true;
 		}
-		catch(Exception e)
-		{
+		catch(Exception e){
 			e.printStackTrace();
 		}
 			return false;
@@ -62,7 +60,7 @@ public class CategoryDaoImpl implements CategoryDaos{
             }
             catch(Exception e){e.printStackTrace();}
             return false;
-            	}
+     }
 
 	@Override
 	public List<Category> getAllCategories() {
@@ -73,7 +71,7 @@ public class CategoryDaoImpl implements CategoryDaos{
             return categories;
             }
             catch(Exception e){e.printStackTrace();}
-	return null;
+			return null;
 	}
 
 	@Override
@@ -83,11 +81,8 @@ public class CategoryDaoImpl implements CategoryDaos{
 		        Session session=sessionFactory.getCurrentSession();
 		        Category obj=session.get(Category.class, categoryId);
 		        return obj;
-		 }
+		 		}
 		        catch(Exception e){e.printStackTrace();}
 		        return null;
 		 }
-	
-
-	
 }
