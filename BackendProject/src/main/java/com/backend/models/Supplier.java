@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="SupplierTable")
 public class Supplier {
@@ -15,9 +17,10 @@ public class Supplier {
 	 @GeneratedValue(strategy=GenerationType.AUTO)
 	 private int supplierId;
 	     
-	     
+	 @NotEmpty(message="enter Supplier Name")	     
 	 private String supplierName;
 	     
+	 @NotEmpty(message="enter Supplier Address")
 	 @Column(name="address")
 	 private String supplierAddress;
 	     

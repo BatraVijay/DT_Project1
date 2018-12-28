@@ -1,16 +1,24 @@
 package com.frontend.controllers;
- 
+
+
 import java.util.List;
  
 
+
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
  
+
+
 
 import com.backend.daos.CategoryDaos;
 import com.backend.models.Category;
@@ -25,14 +33,25 @@ public class CategoryController {
     public ModelAndView getCategoryForm(){
         ModelAndView mv=new ModelAndView("CategoryForm");
         Category cat=new Category();
+        mv.addObject("formLabel","Add Category Form");
+        mv.addObject("btnLabel","Add Category");
+        mv.addObject("operation","Add");
         mv.addObject("categoryObj",cat);
         return mv;
-    }
+    }																	
      
     @RequestMapping(value="addCategoryProcess",method=RequestMethod.POST)
-    public ModelAndView addCategoryProcess(@ModelAttribute("categoryObj")Category obj){
+    public ModelAndView addCategoryProcess(@Valid@ModelAttribute("categoryObj")Category obj,BindingResult result){
          
-        ModelAndView mv=new ModelAndView("ViewCategories");
+    	if(result.hasErrors())
+    	{
+    	ModelAndView mv=new ModelAndView("CategoryForm");
+        mv.addObject("btnLabel","Add category");
+        mv.addObject("formLabel","Add Category Form");
+        
+		return mv;	
+    	}
+    	ModelAndView mv=new ModelAndView("ViewCategories");
         if(obj.getCategoryId()==0){
             mv.addObject("msg","Category Added Succesfully...");
             categoryDaos.addCategory(obj);

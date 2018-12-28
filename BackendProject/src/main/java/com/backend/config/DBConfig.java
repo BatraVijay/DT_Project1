@@ -1,7 +1,7 @@
 package com.backend.config;
 
 
-import java.util.Locale.Category;
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -14,6 +14,12 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.backend.models.Address;
+import com.backend.models.Cart;
+import com.backend.models.Item;
+import com.backend.models.Product;
+import com.backend.models.User;
 
 
 
@@ -42,10 +48,17 @@ public SessionFactory getSessionFactory()
 	p.setProperty("hibernate.hbm2ddl.auto","update");
 	p.setProperty("hibernate.show_sql","true");
 	
+	
 	LocalSessionFactoryBuilder factory=new LocalSessionFactoryBuilder(getDataSource());
 	factory.addProperties(p);
 	factory.addAnnotatedClass(com.backend.models.Category.class);
 	factory.addAnnotatedClass(com.backend.models.Supplier.class);
+	factory.addAnnotatedClass(User.class);
+	factory.addAnnotatedClass(Address.class);
+	factory.addAnnotatedClass(Product.class);
+	factory.addAnnotatedClass(Item.class);
+	factory.addAnnotatedClass(Cart.class);
+	
 	return factory.buildSessionFactory();
 	
 }

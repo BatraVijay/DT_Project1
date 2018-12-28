@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table (name="CategoryTable_12")
 public class Category {
@@ -15,7 +17,11 @@ public class Category {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="cat_Id")
 	private int categoryId;
+	
+	@NotEmpty(message="Enter category name")
 	private String categoryName;
+	
+	@NotEmpty(message="Enter category Description")
 	private String categoryDesc;
 	
 	public int getCategoryId()

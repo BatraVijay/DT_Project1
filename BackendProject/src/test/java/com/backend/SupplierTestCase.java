@@ -25,7 +25,7 @@ public class SupplierTestCase {
 	    }
 	     
 	    @Test
-	    @Ignore 
+	    @Ignore
 	    public void addSupplier(){
 	    	System.out.println("I m here ");
 	        Supplier cat=new Supplier();

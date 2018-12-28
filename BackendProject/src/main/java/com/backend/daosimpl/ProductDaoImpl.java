@@ -1,10 +1,8 @@
 package com.backend.daosimpl;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 import javax.transaction.Transactional;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,99 +12,96 @@ import org.springframework.stereotype.Repository;
 import com.backend.daos.ProductDao;
 import com.backend.models.Product;
 
-@Repository("ProductDao")
+@Repository("productDao")
 @Transactional
 
 public class ProductDaoImpl implements ProductDao {
 
 	
 	@Autowired
-	SessionFactory sessionfactory;
+	SessionFactory sessionFactory;
+
 	
+	public boolean addProduct(Product productObj) {
+		try 
+		{
+	        Session session=sessionFactory.getCurrentSession();
+	        session.save(productObj);
+	        return true;
+	        }
+		
+	        catch(Exception e){
+	            e.printStackTrace();
+	        }
+		
+	        return false;
+	    }
+	 
 	
-	@Override
-	public boolean addProduct(Product product) {
-		try
-		{
-			Session session=sessionfactory.getCurrentSession();
-			session.save(product);
-			return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return false;
-	}
 
 	@Override
-	public boolean deleteProduct(Product product) {
+	public boolean deleteProduct(Product productObj) {
+			
 		try
 		{
-			Session session=sessionfactory.getCurrentSession();
-			session.delete(product);
+			Session session=sessionFactory.getCurrentSession();
+			session.delete(productObj);
 			return true;
 		}
-		catch(Exception e)
-		{
+		catch(Exception e){
 			e.printStackTrace();
 		}
-		return false;
-	}
+			return false;
+		}
 
 	@Override
-	public boolean updateProduct(Product product) {
-		try
-		{
-			Session session=sessionfactory.getCurrentSession();
-			session.update(product);
-			return true;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return false;
+	public boolean updateProduct(Product productObj) {
+		try {
+            Session session=sessionFactory.getCurrentSession();
+            session.update(productObj);
+            return true;
+            }
+            catch(Exception e){e.printStackTrace();}
+            return false;
+     }
+
+	@Override
+	public Product getProduct(int pId) {
 		
-	}
-
-	@Override
-	public Product getProductById(int pId) {
-		try
-		{
-			Session session=sessionfactory.getCurrentSession();
-			 Product sup=session.get(Product.class, pId);
-			  return sup;
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return null;
-		
-	}
-
-	@Override
-	public List<Product> getAllProducts() {
 		 try {
-		        Session session=sessionfactory.getCurrentSession();
-		        Query<Product> query=session.createQuery("from Product");
-		        List<Product> product=query.list();
-		        return product;
-		        }
-		        catch(Exception e){
-		            e.printStackTrace();
-		        }
+		        Session session=sessionFactory.getCurrentSession();
+		        Product obj=session.get(Product.class, pId);
+		        return obj;
+		 		}
+		        catch(Exception e){e.printStackTrace();}
 		        return null;
-		
-	}
+		 }
 
 	@Override
-	public List<Product> getProductsByCategory(int categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> listProducts() {
+		try {
+            Session session=sessionFactory.getCurrentSession();
+            Query query=session.createQuery("from Product");
+            List<Product> product=query.list();
+            return product;
+            }
+            catch(Exception e){e.printStackTrace();}
+			return null;
+	}
+
+
+	@Override
+	public List<Product> getAllProductsByCategory(int categoryId) {
+		try {
+            Session session=sessionFactory.getCurrentSession();
+            Query query=session.createQuery("from Product where categoryId=:x");
+            query.setInteger("x",categoryId);
+            List<Product> product =query.list();
+            return product;
+            }
+            catch(Exception e){e.printStackTrace();}
+			return null;
 	}
 	
-
-
+	
 }

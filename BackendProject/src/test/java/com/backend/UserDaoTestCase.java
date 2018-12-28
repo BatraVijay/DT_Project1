@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.backend.daos.UserDao;
-import com.backend.models.UserInfo;
+import com.backend.models.User;
 
 
 public class UserDaoTestCase {
@@ -28,16 +28,16 @@ public class UserDaoTestCase {
 	    }
 	     
 	    @Test
-	    @Ignore
+	   @Ignore
 	    public void addUser(){
-	        UserInfo cat=new UserInfo();
-	        cat.setUserName("vj");
-	        cat.setPassword("vijay");
-	        cat.setCustomerName("vijay");
-	        cat.setEnabled(true);
-	        cat.setAddress("Sonipat");
-	        cat.setMobileNo("100");
-	        
-	        assertTrue("Problem in Adding User", userDao.addUser(cat));
+	        User cat=new User();
+	       cat.setEmail("kshdf");
+	       cat.setEnabled(true);
+	       cat.setName("vijay");
+	       cat.setPassword("vijay");
+	       cat.setPassword2("vijay");
+	       cat.setPhone("9812953284");
+	       cat.setRole("Employee");
+	        assertTrue("Problem in Adding User", userDao.registerUser(cat));
 	    }
 }

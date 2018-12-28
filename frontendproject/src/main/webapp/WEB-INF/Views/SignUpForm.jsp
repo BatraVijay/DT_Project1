@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,45 +23,68 @@
 
 <div class="container">
 	<center><h1>SignUp Form</h1></center><hr/>
-	<form class="form-horizontal">
-		<div class="form-group">
-			<label class="control-label col-sm-2">Email:</label>
-			<div class="col-sm-10">
-			<input type="email" class="form-control" placeholder="Enter Email" name="email"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2">First Name:</label>
-			<div class="col-sm-10">
-			<input type="text" class="form-control" placeholder="Enter First Name" name="firstName"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2">Last Name:</label>
-			<div class="col-sm-10">
-			<input type="text" class="form-control" placeholder="Enter Last Name" name="lastName"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2">Password:</label>
-			<div class="col-sm-10">
-			<input type="password" class="form-control" placeholder="Enter Password" name="password"/>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label col-sm-2">Confirm Password:</label>
-			<div class="col-sm-10">
-			<input type="password" class="form-control" placeholder="Enter Password Again" name="password2"/>
-			</div>
-		</div>
-		<div class="form-group">        
-      	<div class="col-sm-offset-2 col-sm-10">
-        	<button type="submit" class="btn btn-default">Submit</button>
-      	</div>
+	<f:form class="form-horizontal" action="${contextRoot}/registerUser" method="post" modelAttribute="userObj">
+    
+    <!-- To show the automatic generated id when we go to update any data -->
+
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Email:</label>
+      <div class="col-sm-10">
+      
+      <!-- In the path , we will write the name of the variables in the categoryName -->
+        <f:input type="email" class="form-control" id="email" placeholder="Enter Email" path="email"/>
+        <f:errors path="email"/>
+      </div>
     </div>
-		
-	</form>	
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Name:</label>
+      <div class="col-sm-10">
+      
+      <!-- In the path , we will write the name of the variables in the categoryName -->
+        <f:input type="text" class="form-control" id="name" placeholder="Enter Name" path="name"/>
+        <f:errors path="name"/>
+     
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="password">Password:</label>
+      <div class="col-sm-10">          
+        <f:input type="password" class="form-control" id="password" placeholder="Enter Password" path="password"/>
+        <f:errors path="password"/>
+     
+      </div>
+     </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="password2">Confirm Password:</label>
+      <div class="col-sm-10">          
+        <f:input type="password" class="form-control" id="password2" placeholder="Enter Password" path="password2"/>
+        <f:errors path="password2"/>
+     
+      </div>
+     </div>
+    
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="phone">Enter Phoneno:</label>
+      <div class="col-sm-10">          
+        <f:input type="tel" class="form-control" id="phone" placeholder="Enter Phone number" path="phone"/>
+        <f:errors path="phone"/>
+     
+      </div>
+    </div> 
+    
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">SignUp</button>
+      </div>
+    </div>
+    
+  </f:form>
 </div>
-	
+
 </body>
+
 </html>

@@ -1,21 +1,11 @@
 package com.backend.daos;
 
-import java.util.List;
-
-import com.backend.models.UserInfo;
+import com.backend.models.User;
 
 public interface UserDao {
+	
 
-	public boolean addUser(UserInfo user);
-	public boolean deleteUser(UserInfo user);
-	public boolean updateUser(UserInfo user);
-	 public UserInfo getUserById(int UId);
-	    public List<UserInfo> getAllUser();
-	    public List<UserInfo> getUsersByCategory(int userId);
-	
-	
-	
-	
-	
-	
+	public boolean registerUser(User product);
+	public User getUserById(String id);
+
 }

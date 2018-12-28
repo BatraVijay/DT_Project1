@@ -20,7 +20,7 @@
    bottom: 0;
    width: 100%;
    background-color: black;
-   color: white;
+   color: white;\
    text-align: right;
 }
 </style>
@@ -40,14 +40,14 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="resources\images\h.jpg" alt="Los Angeles">
+        <img src="${contextRoot}\resources\images\h.jpg" alt="Los Angeles">
       </div>
 
       <div class="item">
-        <img src="resources\images\h1.jpg" alt="Los Angeles">      </div>
+        <img src="${contextRoot}\resources\images\h1.jpg" alt="Los Angeles">      </div>
     
       <div class="item">
-            <img src="resources\images\h2.jpg" alt="Los Angeles">  </div>
+            <img src="${contextRoot}\resources\images\h2.jpg" alt="Los Angeles">  </div>
     </div>
 
     <!-- Left and right controls -->
@@ -71,13 +71,13 @@
 
 <!-- Photo Grid -->
 <div class="row">
-  <div class="col-sm-6"> <img src="resources\images\h3.jpg" style="height:550px;width:600px"></div>
-  <div class="col-sm-6"> <img src="resources\images\h4.jpg" style="height:550px;width:600px" class="rounded-circle"></div>
+  <div class="col-sm-6"> <img src="${contextRoot}\resources\images\h3.jpg" style="height:550px;width:600px"></div>
+  <div class="col-sm-6"> <img src="${contextRoot}\resources\images\h4.jpg" style="height:550px;width:600px" class="rounded-circle"></div>
 </div>
 </div>
 
 <br/>
-<img src="resources\images\h5.jpg" style="height:800px;width:100%">
+<img src="${contextRoot}\resources\images\h5.jpg" style="height:800px;width:100%">
 
 
 <div class="footer" >

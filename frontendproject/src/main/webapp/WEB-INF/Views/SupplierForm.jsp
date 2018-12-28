@@ -18,20 +18,33 @@
 <jsp:include page="./shared/Header.jsp"/>	
 
 
-
 <div class="container">
-  <center><h1>Supplier Form </h1></center><hr/>
+  <center><h1>${formLabel}</h1></center><hr/>
   <f:form class="form-horizontal" action="${contextRoot}/addSupplierProcess" method="post" modelAttribute="supplierObj">
     
     <!-- To show the automatic generated id when we go to update any data -->
+<c:if test="${operation eq 'Update'}">
+     
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="supplierId">Supplier Id:</label>
+      <div class="col-sm-10">
+      
+      <!-- In the path , we will write the name of the variables in the supplierName -->
+        <f:input type="number" class="form-control" id="supplierId" placeholder="Enter Supplier Id" path="supplierId" readonly="true"/>
+      </div>
+    </div>
 
-    
+    </c:if>
+
+
+     
     <div class="form-group">
       <label class="control-label col-sm-2" for="supplierName">Supplier Name:</label>
       <div class="col-sm-10">
       
       <!-- In the path , we will write the name of the variables in the supplierName -->
         <f:input type="text" class="form-control" id="supplierName" placeholder="Enter Supplier Name" path="supplierName"/>
+        <f:errors path="supplierName"/>
       </div>
     </div>
     
@@ -39,11 +52,12 @@
       <label class="control-label col-sm-2" for="supplierAddress">Supplier Address:</label>
       <div class="col-sm-10">          
         <f:input type="text" class="form-control" id="supplierAddress" placeholder="Enter Supplier Address" path="supplierAddress"/>
+      <f:errors path="supplierAddress"/>
       </div>
     </div>
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Add Supplier</button>
+        <button type="submit" class="btn btn-default">${btnLabel}</button>
       </div>
     </div>
   </f:form>
