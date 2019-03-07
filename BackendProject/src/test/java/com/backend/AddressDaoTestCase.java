@@ -30,7 +30,7 @@ public class AddressDaoTestCase {
 		    public void addCategoryTest(){
 		        Address cat=new Address();
 		       cat.setCity("sonipat");
-		       cat.setHousenumber(35);
+		       cat.setHouseNumber(35);
 		       cat.setId(101);
 		       cat.setLocality("hjsd");
 		       cat.setPinCode("131001");

@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.backend.models.Address;
 import com.backend.models.Cart;
 import com.backend.models.Item;
+import com.backend.models.MyNotification;
+import com.backend.models.Order;
 import com.backend.models.Product;
 import com.backend.models.User;
 
@@ -27,7 +29,7 @@ import com.backend.models.User;
 @ComponentScan("com.backend")
 @EnableTransactionManagement
 public class DBConfig {
-
+	
 @Bean(name="dataSource")
 public DataSource getDataSource()
 {
@@ -58,6 +60,9 @@ public SessionFactory getSessionFactory()
 	factory.addAnnotatedClass(Product.class);
 	factory.addAnnotatedClass(Item.class);
 	factory.addAnnotatedClass(Cart.class);
+	factory.addAnnotatedClass(Order.class);
+	factory.addAnnotatedClass(MyNotification.class);
+	
 	
 	return factory.buildSessionFactory();
 	

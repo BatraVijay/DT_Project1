@@ -104,8 +104,8 @@ public class ProductController {
 			
 			productObj.setImg(fileName);
 			
-			
-			if(productObj.getProductId()==0){
+			System.out.println(productObj+" "+productObj.getProductId());
+			if(productObj.getProductId()==null){
 				productDao.addProduct(productObj);
 			}
 			else {

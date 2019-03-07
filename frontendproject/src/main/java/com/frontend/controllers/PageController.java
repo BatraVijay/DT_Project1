@@ -73,8 +73,7 @@ public class PageController {
         return "Home";
     }
 
-	
-	
+
     @RequestMapping(value="/aboutUs",method=RequestMethod.GET)
     public String getAboutUsPage(){
         return "AboutUs";
@@ -104,6 +103,8 @@ public class PageController {
     		return mv;
     	}
     	
+    	user.setEnabled(true);
+    	user.setRole("USER");
     	userDao.registerUser(user);
     
     	

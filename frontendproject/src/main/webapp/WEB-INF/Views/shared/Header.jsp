@@ -45,6 +45,9 @@
       <li><a href="${contextRoot}/aboutUs">About us</a></li>
       <li><a href="${contextRoot}/contactUs">Contact us</a></li>
    	 <!-- DropDown bar -->
+   	 
+   	 
+   	 <sec:authorize access="hasAuthority('ADMIN')">
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Options
         <span class="caret"></span></a>
@@ -59,24 +62,29 @@
         </ul>
       </li>  	
     </ul>
-    
-    <ul class="nav navbar-nav navbar-right">
+    </sec:authorize>
+     
+   
     	<sec:authorize access="isAnonymous()">
+    	
+    	  <ul class="nav navbar-nav navbar-right">
+    	  
       <li><a href="${contextRoot}/signUpForm"><span class="glyphicon glyphicon-user"></span>SignUp</a></li>
-      <li><a href="${contextRoot}/loginForm"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="${contextRoot}/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </sec:authorize>
            	
            	
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
          
          
          <sec:authorize access="isAuthenticated()">
          	<li  style="color:white">Welcome : ${sessionScope.userObject.name}</li>
          	<li><a href="${contextRoot}/perform-logout">Logout</a></li>
-       		<li><a href="${contextRoot}/viewCart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
-       	</sec:authorize>	 
+         	<sec:authorize access="hasAuthority('USER')">
+       		<li><a href="${contextRoot}/addToCart/viewCart?uEmail=${sessionScope.userEmail}"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
+       </sec:authorize>
+     </sec:authorize>	 
       
-    </ul>
+   </ul>
   </div>
   </div>
 </nav>

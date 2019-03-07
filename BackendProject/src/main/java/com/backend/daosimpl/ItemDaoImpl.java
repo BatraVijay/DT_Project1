@@ -131,7 +131,9 @@ public class ItemDaoImpl implements ItemDao {
 		{
 			
 			Session session=sessionFactory.getCurrentSession();
-			session.update(session);
+			Item itemObj=session.get(Item.class,itemId);
+			itemObj.setQuantity(itemObj.getQuantity()+1);
+			session.merge(itemObj);
 			return true;
 		}
 		catch(Exception e)
@@ -145,17 +147,22 @@ public class ItemDaoImpl implements ItemDao {
 	@Override
 	public boolean decreaseQuantity(int itemId) {
 		
-		try
-		{
-			Session session=sessionFactory.getCurrentSession();
-			session.update(session);
-			return true;
+			try
+			{
+				Session session=sessionFactory.getCurrentSession();
+				Item itemObj=session.get(Item.class, itemId);
+				itemObj.setQuantity(itemObj.getQuantity()-1);
+				
+				if(itemObj.getQuantity()==0){
+					return false;
+				}
+				session.merge(itemObj);
+				return true;
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			return false;
 		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return false;
-	}
-
 }

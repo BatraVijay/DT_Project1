@@ -18,12 +18,21 @@ public class Address {
 	@Id
 	@GeneratedValue
 	private int id;
-	private int housenumber;
+	private int houseNumber;
 	private String locality;
 	private String city;
 	private String state;
 	private String pinCode;
+	private String country;
 	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="email")
 	private User user;
@@ -36,12 +45,12 @@ public class Address {
 		this.id = id;
 	}
 
-	public int getHousenumber() {
-		return housenumber;
+	public int getHouseNumber() {
+		return houseNumber;
 	}
 
-	public void setHousenumber(int housenumber) {
-		this.housenumber = housenumber;
+	public void setHouseNumber(int housenumber) {
+		this.houseNumber = housenumber;
 	}
 
 	public String getLocality() {
