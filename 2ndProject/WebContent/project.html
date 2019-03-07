@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="ISO-8859-1">
+<title>Chat King</title>
+ <meta charset="utf-8">
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-cookies.js"></script>
+  
+  <script src="js//Angular.js"></script>
+  <script src="User//UserController.js"></script>
+  <script src="Job//JobController.js"></script>
+  <script src="Blog//BlogController.js"></script>
+  <script src="Friends//FriendController.js"></script>
+  <script src="Friends//NotificationController.js"></script>
+  <script src="js//sockjs.js"></script>
+  <script src="js//stomp.js"></script>
+  <script src="chat//chatcontroller.js"></script>
+  <script src="chat//chatservice.js"></script>
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Chat King</a>
+    </div>
+    <ul class="nav navbar-nav">	
+      <li class="active"><a href="#!">Home</a></li>
+      <li><a href="#!aboutUs">About Us</a></li>
+      <li><a href="#!contactUs">Contact Us</a></li>
+      <li><a href="#">Notifications {{notificationCount}}</a></li>
+    
+    
+    <li class="dropdown"><a class="navbar-brand" href="" class="dropdown-toggle" data-toggle="dropdown" ng-show="currentUser.firstName!=undefined">Friend<b class="caret"></b></a> 
+			<ul class="dropdown-menu">
+			<li><a href="#!suggestedusers" >Suggested Users</a></li>
+			<li><a href="#!pendingrequests" >Pending Requests </a></li>
+			<li><a href="#!friend" >Friends </a></li>
+			</ul>
+			</li>
+			
+			<li class="dropdown"><a class="navbar-brand" href="" class="dropdown-toggle" data-toggle="dropdown" >Job<b class="caret"></b></a> 
+			<ul class="dropdown-menu">
+			<li><a href="#!addjob" ng-show="currentUser.role=='ADMIN'" ">Add Job</a> 
+			<li><a href="#!getAllJobs" >Get All Jobs</a></li>
+			<li><a href="#!viewAllAppliedJobs" ng-show="currentUser.role=='ADMIN'">View All Applied Jobs</a></li>
+			
+			</ul>
+			</li>
+			
+		<li><a href="#!chat" 
+			ng-show="currentUser.firstName!=undefined">
+			Chat Room</a></li>
+    		
+	
+	
+    	<li class="dropdown">
+			<a class="navbar-brand" href="" class="dropdown-toggle" data-toggle="dropdown" >Blog<b class="caret"></b></a> 
+			<ul class="dropdown-menu">
+			<li><a href="#!getAllBlog" >View All Approved Blogs</a>
+			<li><a href="#!viewAllPendingBlogs" ng-show="currentUser.role=='ADMIN'">View All Pending Blogs</a>  </li>
+			<li ng-show="currentUser.role=='Role_User'"><a href="#!CreateBlog" >Create Blog</a></li>
+			<li ng-show="currentUser.role=='Role_User'"><a href="#!ViewMyBlog">View My Blog</a>
+			</ul>
+			</li>
+    	
+    	
+		
+	
+<!-- <li>
+ <a href="#">
+       <center><h3 color:"white">   <span class="glyphicon glyphicon-comment"></span></h3></center>
+        </a>
+        </li>      
+ -->    </ul>
+
+    
+
+	
+         <ul class="nav navbar-nav navbar-right" ng-show="currentUser.firstName==undefined">
+             
+      	<li><a href="#!signUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#!login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+      
+      
+      <ul class="nav navbar-nav navbar-right" ng-show="currentUser.firstName!=undefined">
+    
+    
+    		<li>
+					
+					<a href="#!uploadprofilepic">
+					<img id="img1"  
+					src="http://localhost:9390/ChatKing_Middleware/getimage/{{currentUser.email}}"
+					onerror="if (this.src != 'images/profilepicture.png') this.src = 'images/profilepicture.png';"
+					style="height:80px;width:100px" onshow="checkSRC"> 
+    				</a>
+    				
+    		<li>
+			
+			
+			
+			
+</li>    
+	
+     
+    
+    	<li class="dropdown">
+<a class="navbar-brand" href="" class="dropdown-toggle" data-toggle="dropdown" >Welcome : {{currentUser.firstName}} {{currentUser.lastName}}<b class="caret"></b></a> 
+			<ul class="dropdown-menu">
+			<li><a href="#!viewProfile" >View Profile</a> 
+			<li><a href="#!editProfile" >Edit Profile</a></li>
+			
+			</ul>
+			</li>
+    	
+    	
+
+    
+      	
+      	<li><form  ng-controller="userCtrl"><input type="submit" value="Logout" ng-click="logout()"></form></li>
+      </ul>
+  </div>
+</nav>
+
+<div ng-view></div>
+
+
+
+
+</body>
+</html>

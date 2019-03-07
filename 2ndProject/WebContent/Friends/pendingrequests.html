@@ -1,0 +1,27 @@
+<!-- <style>
+.t{
+padding-top:130px; 
+}
+</style> -->
+<div data-ng-init="pendingrequest()">
+<div align="center"><font size="7"><i><b>Pending Request</b></i></font></div><br><br>
+<h1 ng-if="suggestedUsers.length==0">No pending requets</h1>
+<div class="container">
+<br><table class="table table-striped">
+<tr ng-repeat="request in pendingrequest">
+<td><h2><b>Email : </b>{{request.fromId.email}}</h2>
+
+<h2><b>Name :</b> {{request.fromId.firstName}} &nbsp;{{request.fromId.lastName}}</h2>
+<h2><b>Phone Number : </b>{{request.fromId.mobileNumber}}</h2>
+</td>
+<td>
+<img src="http://localhost:9390/ChatKing_Middleware/getimage/{{request.fromId.email}}" alt="No Image" height="150px" width="150px" style="margin-top:10px">
+</td>
+<td>
+<button type="button" class="btn btn-primary" ng-click="AcceptRequest(request)" style="margin-top:70px">Accept Request</button>
+<button type="button" class="btn btn-primary" ng-click="RejectRequest(request)" style="margin-top:70px">Decline Request</button>
+
+</td>
+</tr>
+</table></div>
+</div> 

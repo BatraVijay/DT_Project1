@@ -1,0 +1,22 @@
+
+
+<div data-ng-init="fetchfriends()">
+<div align="center"><font size="7"><i><b>Friend List</b></i></font></div><br><br>
+<h1 ng-if="friends.length==0">No friends to show</h1>
+<div class="container">
+<br><table class="table table-striped">
+<tr ng-repeat="friend in friends">
+<td><h2><b>Email : </b>{{friend.email}}</h2>
+
+<h2><b>Name :</b> {{friend.firstName}} &nbsp;{{friend.lastName}}</h2>
+<h2><b>Phone Number : </b>{{friend.mobileNumber}}</h2>
+</td>
+<td>
+<img src="http://localhost:9390/ChatKing_Middleware/getimage/{{friend.email}}" alt="No Image" height="150px" width="150px" style="margin-top:10px">
+</td>
+<td>
+
+</td>
+</tr>
+</table></div>
+</div> 

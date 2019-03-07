@@ -1,0 +1,31 @@
+<div class="container" style="margin-top:100px" data-ng-init="getJobById()" data-ng-controller="jobCtrl">
+<div align="center" style="margin-right:300px">
+<font size="7"><i>Job Details</i></font></div><br>
+<div class="container"><br>
+	<div class="row" style="width: 800px">
+		<div class="panel panel-info">
+			<div class="panel panel-heading"><h1><i>{{job.jobTitle}}</i></h1></div>
+			<div class="panel-body">
+				<h3><b>Job Description</b> : {{job.jobDescription}}</h3> <h3><b>Skills
+					Required</b> : {{job.skillsRequired}}</h3> <h3><b>Location</b> :
+				{{job.location}}</h3> <h3><b>Years Of Experience</b> :
+				{{job.yrsofExp}}</h3> <h3><b>Company Name</b> : {{job.companyName}}</h3>
+				<h3><b>Salary</b> : {{job.salary}}</h3> <h3><b>Posted On</b> :
+				{{job.postedOn | date:'medium'}}</h3>
+				
+				
+				<div>
+				<button class="btn btn-primary"  data-ng-hide="currentUser.role=='ADMIN'">
+					<span ng-show="status==false"  data-ng-click="applyJob(job.id)">Apply Job-{{job.id}}</span>
+					<span ng-show="status==true">
+						Already Applied
+					</span>
+					
+					</button>
+				</div>
+			</div>
+			
+		</div>																																											
+	</div>
+</div>
+</div>
